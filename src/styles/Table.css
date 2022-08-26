@@ -1,0 +1,32 @@
+.table {
+  overflow: scroll;
+  max-height: 50vh;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+}
+
+.table > tr {
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+/* td {
+  background-color: aliceblue;
+} */
+
+.table tr:nth-of-type(even) {
+  background-color: #f5f6fa;
+}
+
+.table > table > thead > tr {
+  background-color: #f5f6fa;
+}
+
+.table::-webkit-scrollbar {
+  visibility: hidden;
+}
+
+td {
+  padding: 0.2rem;
+}
