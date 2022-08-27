@@ -10,7 +10,7 @@ import { useStateValue } from "../common/StateProvider";
 import { actionTypes } from "../common/reducer";
 
 function InfoCard({ title, count, total }) {
-  const [{ loading }, dispatch] = useStateValue();
+  const [{ loading, clickedDataType }, dispatch] = useStateValue();
 
   // useEffect(() => {
   //   dispatch({
@@ -31,14 +31,17 @@ function InfoCard({ title, count, total }) {
       className="infocard"
     >
       <Card className="infocard_card">
+        {clickedDataType === title && (
+          <div className={`infocard__selected ${clickedDataType}`}></div>
+        )}
         <CardContent>
           {loading ? (
             <CircularProgress />
           ) : (
             <>
               <Typography color="textSecondary">{title}</Typography>
-              <h1>{count}</h1>
-              <Typography color="textSecondary">{total}</Typography>
+              <h1 style={{ color: "maroon" }}>{count}</h1>
+              <Typography color="textSecondary">{total} total</Typography>
             </>
           )}
         </CardContent>

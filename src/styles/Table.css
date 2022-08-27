@@ -1,14 +1,14 @@
 .table {
   overflow: scroll;
   max-height: 50vh;
+
   /* display: flex;
   flex-direction: column;
   justify-content: space-between; */
 }
 
-.table > tr {
-  /* display: flex;
-  justify-content: space-between; */
+.table > table {
+  width: 100%;
 }
 
 /* td {
@@ -29,4 +29,11 @@
 
 td {
   padding: 0.2rem;
+  text-align: left;
+}
+
+@media (max-width: 950px) {
+  td {
+    text-align: left;
+  }
 }

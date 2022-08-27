@@ -1,4 +1,5 @@
 import { CircularProgress } from "@material-ui/core";
+import numeral from "numeral";
 import React from "react";
 import { useStateValue } from "../common/StateProvider";
 import "../styles/Table.css";
@@ -7,7 +8,6 @@ function Table() {
   const [{ countries, loading }] = useStateValue();
   // const [sortedCountries, ]
 
-  
   return loading ? (
     <CircularProgress />
   ) : (
@@ -26,7 +26,7 @@ function Table() {
             .map((country) => (
               <tr key={country.iso2}>
                 <td>{country.name}</td>
-                <td>{country.cases}</td>
+                <td>{numeral(country.cases).format("0,0")}</td>
               </tr>
             ))}
         </tbody>

@@ -16,6 +16,9 @@ import { useStateValue } from "./common/StateProvider";
 import { actionTypes } from "./common/reducer";
 import Table from "./components/Table";
 import Graph from "./components/Graph";
+import numeral from "numeral";
+
+const prettify = (num) => (num > 0 ? numeral(num).format("+0.0a") : `+${num}`);
 
 const App = () => {
   const [{ countries, worldwide, selectedCountryInfo, loading }, dispatch] =
@@ -100,6 +103,10 @@ const App = () => {
         selectedCountryInfo: worldwide,
       });
     } else {
+      console.log(
+        countries.filter((country) => country.iso2 === target.value)[0]
+      );
+
       dispatch({
         type: actionTypes.SET_SELECTED_COUNTRY,
         selectedCountryInfo: countries.filter(
@@ -136,18 +143,18 @@ const App = () => {
         <div className="app__infoContainer">
           <InfoCard
             title="cases"
-            count={selectedCountryInfo.todayCases}
-            total={selectedCountryInfo.cases}
+            count={prettify(selectedCountryInfo.todayCases)}
+            total={prettify(selectedCountryInfo.cases)}
           />
           <InfoCard
             title="recovered"
-            count={selectedCountryInfo.todayRecovered}
-            total={selectedCountryInfo.recovered}
+            count={prettify(selectedCountryInfo.todayRecovered)}
+            total={prettify(selectedCountryInfo.recovered)}
           />
           <InfoCard
             title="deaths"
-            count={selectedCountryInfo.todayDeaths}
-            total={selectedCountryInfo.deaths}
+            count={prettify(selectedCountryInfo.todayDeaths)}
+            total={prettify(selectedCountryInfo.deaths)}
           />
         </div>
 
@@ -167,7 +174,7 @@ const App = () => {
         <div className="app__countriesGraph">
           <Card className="app__countriesTableCard">
             <CardContent>
-              <h3>worldwide new cases</h3>
+              <h3>worldwide new (120 days)</h3>
               <Graph />
             </CardContent>
           </Card>

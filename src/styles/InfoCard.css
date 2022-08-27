@@ -5,6 +5,7 @@
   /* align-items: stretch; */
   /* justify-content: center; */
   /* padding: 0; */
+  flex-direction: column;
   cursor: pointer;
 }
 
@@ -17,5 +18,12 @@
   align-items: stretch;
 }
 
-.infocard_card > .MuiCardContent-root > * {
+.infocard__selected {
+  background: red;
+  width: 100%;
+  height: 10px;
+}
+
+.infocard__selected.recovered {
+  background: green;
 }

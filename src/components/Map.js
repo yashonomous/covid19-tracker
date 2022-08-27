@@ -119,7 +119,8 @@ function Map() {
             <LayersControl.Overlay checked name="show circles">
               <LayerGroup>
                 {countries.map((country) => {
-                  console.log(country[clickedDataType]);
+                  //   console.log(country[clickedDataType]);
+                  //   console.log(country[clickedDataType]);
                   return (
                     <Circle
                       key={country.iso2}
@@ -131,24 +132,39 @@ function Map() {
                             : clickedDataType === "recovered"
                             ? "green"
                             : "red",
+                        color:
+                          clickedDataType === "cases"
+                            ? "blue"
+                            : clickedDataType === "recovered"
+                            ? "green"
+                            : "red",
                       }}
-                      radius={Math.sqrt(country[clickedDataType]) * 80}
+                      radius={
+                        clickedDataType === "cases"
+                          ? Math.sqrt(country[clickedDataType]) * 80
+                          : clickedDataType === "recovered"
+                          ? Math.sqrt(country[clickedDataType]) * 120
+                          : Math.sqrt(country[clickedDataType]) * 400
+                      }
                     >
                       <Popup>
                         <div
                           className="map__flag"
                           style={{
-                            backgroundImage: `url(${selectedCountryInfo.flag})`,
+                            backgroundImage: `url(${country.flag})`,
                           }}
                         ></div>
                         <h2>{country.name}</h2>
-                        <h3>
+                        {/* <h3>
                           {clickedDataType === "cases"
                             ? `cases : ${country.cases}`
                             : clickedDataType === "recovered"
                             ? `recovered : ${country.recovered}`
                             : `death : ${country.deaths}`}
-                        </h3>
+                        </h3> */}
+                        <h3>cases: {country.cases}</h3>
+                        <h3>recovered: {country.recovered}</h3>
+                        <h3>deaths: {country.deaths}</h3>
                       </Popup>
                     </Circle>
                   );
